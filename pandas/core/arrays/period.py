@@ -36,6 +36,7 @@ from pandas._libs.tslibs.period import (
     DIFFERENT_FREQ,
     IncompatibleFrequency,
     Period,
+    PeriodMixin,
     get_period_field_arr,
     period_asfreq_arr,
 )
@@ -192,6 +193,8 @@ class PeriodArray(dtl.DatelikeOps):
     ]
     _datetimelike_ops: list[str] = _field_ops + _object_ops + _bool_ops
     _datetimelike_methods: list[str] = ["strftime", "to_timestamp", "asfreq"]
+
+    __setstate__ = dtl.DatelikeOps.__setstate__
 
     _dtype: PeriodDtype
 
